@@ -1,0 +1,19 @@
+[
+{
+   name: 'United Kingdom',
+   abbrev: 'GB',
+   visited: true
+}, {
+   name: 'France',
+   abbrev: 'FR',
+   visited: true
+}, {
+   name: 'Russian Federation',
+   abbrev: 'RU',
+   visited: true
+}, {
+   name: 'United States',
+   abbrev: 'US',
+   visited: true
+}
+]

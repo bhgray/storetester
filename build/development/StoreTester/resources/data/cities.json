@@ -1,0 +1,45 @@
+[  {
+      name: 'New York',
+      country: "US",
+      visited: true
+  }, {
+      name: 'Oklahoma City',
+      country: "US",
+      visited: false
+  }, {
+      name: 'Philadelphia',
+      country: "US",
+      visited: true
+  },
+  {
+      name: 'Paris',
+      country: "FR",
+      visited: true
+  }, {
+      name: 'Honfleur',
+      country: "FR",
+      visited: true
+  }, {
+      name: 'Lyon',
+      country: "FR",
+      visited: false
+  },
+  {
+      name: 'Moscow',
+      country: "RU",
+      visited: true
+  }, {
+      name: 'Saint Petersburg',
+      country: "RU",
+      visited: false
+  },
+  {
+      name: 'London',
+      country: "GB",
+      visited: true
+  }, {
+      name: 'Liverpool',
+      country: "GB",
+      visited: false
+  }
+]

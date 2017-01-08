@@ -3,31 +3,33 @@
  * "mainView" property. That setting causes an instance of this class to be created and
  * added to the Viewport container.
  *
- * TODO - Replace the content of this view to suit the needs of your application.
  */
 Ext.define('StoreTester.view.main.Main', {
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.panel.Panel',
     xtype: 'app-main',
 
     requires: [
         'Ext.MessageBox',
-
         'StoreTester.view.main.MainController',
-        'StoreTester.view.main.MainModel',
-        'StoreTester.view.main.List'
+        'StoreTester.view.main.MainModel'
     ],
 
     controller: 'main',
     viewModel: 'main',
 
-    defaults: {
-        tab: {
-            iconAlign: 'top'
-        },
-        styleHtmlContent: true
+    header: {
+            layout: {
+                align: 'stretchmax'
+            },
+            title: {
+                bind: {
+                    text: '{name}'
+                },
+                flex: 0
+            }
     },
 
-    tabBarPosition: 'bottom',
+
 
     items: [
         {
@@ -36,7 +38,7 @@ Ext.define('StoreTester.view.main.Main', {
             layout: 'fit',
             // The following grid shares a store with the classic version's grid as well!
             items: [{
-                xtype: 'mainlist'
+                xtype: 'grid'
             }]
         },{
             title: 'Users',

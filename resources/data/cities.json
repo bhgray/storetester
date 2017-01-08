@@ -1,0 +1,7 @@
+[
+  {
+      name: 'New York',
+      country: 'US',
+      visited: true
+  }
+]
