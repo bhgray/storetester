@@ -5,59 +5,83 @@
  *
  */
 Ext.define('StoreTester.view.main.Main', {
-    extend: 'Ext.panel.Panel',
-    xtype: 'app-main',
-
-    requires: [
-        'Ext.MessageBox',
-        'StoreTester.view.main.MainController',
-        'StoreTester.view.main.MainModel'
-    ],
-
+    extend: 'Ext.Panel',
+    alias: 'view.main',
+    bind: {
+        title: '{title}'
+    },
     controller: 'main',
     viewModel: 'main',
-
-    header: {
-            layout: {
-                align: 'stretchmax'
-            },
-            title: {
-                bind: {
-                    text: '{name}'
-                },
-                flex: 0
-            }
+    initialize: function () {
+        Ext.Viewport.setMenu(this.getMenuCfg('left'), {
+            side: 'left'
+        });
+        console.log('initialize Fiddle.view.Main');
+        console.log('viewmodel init?  ' + this.getViewModel().data.title);
     },
-
-
-
     items: [
         {
-            title: 'Home',
-            iconCls: 'x-fa fa-home',
-            layout: 'fit',
-            // The following grid shares a store with the classic version's grid as well!
-            items: [{
-                xtype: 'grid'
+            xtype: 'toolbar',
+            docked: 'top',
+            items: [
+                {
+                    xtype: 'button',
+                    iconCls: 'x-fa fa-bars',
+                    handler: function () {
+                        Ext.Viewport.toggleMenu('left');
+                    }
+                },
+                {
+                    xtype: 'spacer'
+                }
+            ]
+        },
+        {
+            xtype: 'grid',
+            reference: 'mainlist',
+            title: 'Select a country from the menu',
+            columns: [{
+                text: 'Name',
+                dataIndex: 'name',
+                width: 200
+            }, {
+                xtype: 'checkcolumn',
+                dataIndex: 'visited',
+                name: 'visited',
+                text: 'Visited?'
             }]
-        },{
-            title: 'Users',
-            iconCls: 'x-fa fa-user',
-            bind: {
-                html: '{loremIpsum}'
-            }
-        },{
-            title: 'Groups',
-            iconCls: 'x-fa fa-users',
-            bind: {
-                html: '{loremIpsum}'
-            }
-        },{
-            title: 'Settings',
-            iconCls: 'x-fa fa-cog',
-            bind: {
-                html: '{loremIpsum}'
-            }
-        }
-    ]
+        }],
+    getMenuCfg: function (side) {
+        var menu = {
+            items: [
+                {
+                    xtype: 'fieldset',
+                    title: 'Choose a country',
+                    items: [
+                        {
+                            xtype: 'selectfield',
+                            reference: 'mainselectfield',
+                            displayField:  'name',
+                            valueField: 'abbrev',
+                            store: this.getCountriesStore(),
+                            listeners : {
+                                change : function (field, newValue) {
+                                    console.log(newValue.data);
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+        console.log('getMenuCfg called');
+        return menu;
+    },
+    doDestroy: function () {
+        Ext.Viewport.removeMenu('left');
+        this.callParent();
+    },
+    getCountriesStore: function () {
+        return this.getController().getStore('countries');
+    }
 });

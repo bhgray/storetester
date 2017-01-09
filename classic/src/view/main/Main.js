@@ -6,7 +6,6 @@
  */
 Ext.define('StoreTester.view.main.Main', {
     extend: 'Ext.panel.Panel',
-    xtype: 'app-main',
 
     requires: [
         'Ext.plugin.Viewport',
